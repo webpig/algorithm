@@ -79,12 +79,87 @@ SingleLinkedList.prototype.reverse = function () {
     this.head.next = previousNode
 }
 
+function reverse (linkedList) {
+    let singleLinkedList = new SingleLinkedList(),
+        values = [],
+        currNode = linkedList.head.next
+
+    while (currNode) {
+        values.push(currNode.value)
+        currNode = currNode.next
+    }
+
+    for (let i = values.length - 1; i >= 0; i--) {
+        singleLinkedList.append(values[i])
+    }
+
+    return singleLinkedList
+}
+
 // 测试
-const singleLinkendList = new SingleLinkedList()
-singleLinkendList.append('a')
-singleLinkendList.append('b')
-singleLinkendList.append('c')
-singleLinkendList.insert('a', 'd')
-singleLinkendList.delete('b')
-singleLinkendList.reverse()
-console.log(singleLinkendList)
+// const singleLinkedList = new SingleLinkedList()
+// singleLinkedList.append('a')
+// singleLinkedList.append('b')
+// singleLinkedList.append('c')
+// singleLinkedList.insert('a', 'd')
+// singleLinkedList.delete('b')
+// singleLinkedList.reverse()
+// console.log(singleLinkedList)
+
+const singleLinkedList = new SingleLinkedList()
+singleLinkedList.append('a')
+singleLinkedList.append('b')
+singleLinkedList.append('c')
+singleLinkedList.append('c')
+singleLinkedList.append('b')
+singleLinkedList.append('a')
+
+function isPalindromeString (str) {
+    let reversedStr = reverse(str),
+        currReversedStrNode = reversedStr.head.next
+        currStrNode = str.head.next
+
+    console.log(reversedStr, str)
+
+    while (currStrNode) {
+        if (currStrNode.value !== currReversedStrNode.value) {
+            return false
+        }
+
+        currReversedStrNode = currReversedStrNode.next
+        currStrNode = currStrNode.next
+    }
+
+    return true
+}
+
+function isPalindrome (linkedList) {
+    let fast = linkedList.head.next,
+        slow = linkedList.head.next,
+        prev = null
+
+    while (fast && fast.next) {
+        fast = fast.next.next
+        // 将链表前半部分反转，即prev；slow为后半段
+        const next = slow.next
+        slow.next = prev
+        prev = slow
+        slow = next
+    }
+
+    // fast不为null，说明链表节点数为奇数，为奇数则不用比较中间节点，向后移再进行比较
+    if (fast) {
+        slow = slow.next
+    }
+
+    while (slow) {
+        if (prev.value !== slow.value) return false
+        prev = prev.next
+        slow = slow.next
+    }
+
+    return true
+}
+
+// console.log(isPalindromeString(singleLinkedList))
+console.log(isPalindrome(singleLinkedList))
