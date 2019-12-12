@@ -1,6 +1,6 @@
 function selectionSort (arr: Array<number>) {
     const len = arr.length
-    let minIndex = 0
+    let minIndex: number = 0
 
     for (let i = 0; i < len; i++) {
         minIndex = i

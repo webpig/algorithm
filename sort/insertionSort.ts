@@ -6,8 +6,8 @@ function insertionSort (arr: Array<number>) {
     }
 
     for (let i = 1; i < len; i++) {
-        let value = arr[i],
-            j = i - 1
+        let value: number = arr[i],
+            j: number = i - 1
 
         for (; j >= 0; j--) {
             if (arr[j] > value) {

@@ -162,4 +162,18 @@ function isPalindrome (linkedList) {
 }
 
 // console.log(isPalindromeString(singleLinkedList))
-console.log(isPalindrome(singleLinkedList))
+// console.log(isPalindrome(singleLinkedList))
+
+function getMiddleNode (linkedList) {
+    let slow = linkedList.head.next,
+        fast = linkedList.head.next
+
+    while (fast && fast.next) {
+        fast = fast.next.next
+        slow = slow.next
+    }
+
+    return slow
+}
+
+console.log(getMiddleNode(singleLinkedList))
