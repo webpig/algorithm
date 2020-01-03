@@ -57,14 +57,57 @@ class SingleLinkedList {
 
         while (curr.next) {
             curr = curr.next
-            console.log(curr.val)
+            // console.log(curr.val)
         }
-    }                        
+    }   
+
+    findNodeByIndex (index) {
+        if (index <= 0) return 'None'
+
+        let i = 1
+        let curr = this.head.next
+
+        while (curr) {
+            if (i === index) {
+                return curr
+            }
+
+            i++
+            curr = curr.next
+        }
+
+        return 'None'
+    }
+
+    findNodeByVal (val) {
+        let curr = this.head.next
+
+        while (curr.val !== val) {
+            curr = curr.next
+        }
+
+        return curr || 'None'
+    }
+}
+
+function reverse (linkedList) {
+    let curr = linkedList.head.next
+    let prev = null
+
+    while (curr) {
+        const next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+    }
+
+    linkedList.head.next = prev
 }
 
 module.exports = {
     ListNode,
-    SingleLinkedList
+    SingleLinkedList,
+    reverse
 }
 
 // const singleLinkedList = new SingleLinkedList()
