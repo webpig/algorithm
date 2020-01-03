@@ -82,7 +82,7 @@ class SingleLinkedList {
     findNodeByVal (val) {
         let curr = this.head.next
 
-        while (curr.val !== val) {
+        while (curr && curr.val !== val) {
             curr = curr.next
         }
 
