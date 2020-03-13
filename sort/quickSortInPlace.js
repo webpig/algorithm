@@ -1,4 +1,4 @@
-function quickSortInPlace (arr, startIndex, endIndex) {
+function quickSortInPlace (arr, startIndex = 0, endIndex = arr.length) {
     if (startIndex >= endIndex) return 
     
     let pivot = partition(arr, startIndex, endIndex)
